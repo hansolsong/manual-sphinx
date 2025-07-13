@@ -45,24 +45,17 @@ Issues = "https://github.com/yourusername/sphinx-marginbook-theme/issues"
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=7.0",
-    "pytest-cov",
-    "pytest-regression",
-    "sphinx-toolbox",
-    "black",
-    "ruff",
-    "mypy",
-    "pre-commit",
-    "sphinx-autobuild",
+    "pytest>=8.3.0",
+    "pytest-sphinx>=0.6.0",
+    "sphinx-testing",
+    "black>=24.8.0",
+    "ruff>=0.6.0",
+    "mypy>=1.11.0",
 ]
 test = [
-    "pytest>=7.0",
-    "pytest-regression",
-    "sphinx-toolbox",
-    "diff-pdf-visually",
-    "pillow",
-    "pdfplumber",
-    "pdf2image",
+    "pytest>=8.3.0",
+    "pytest-sphinx>=0.6.0",
+    "sphinx-testing",
 ]
 docs = [
     "sphinx-autobuild",

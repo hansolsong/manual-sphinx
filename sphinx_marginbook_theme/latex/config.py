@@ -18,29 +18,23 @@ def get_latex_elements() -> dict[str, Any]:
         
         # Preamble - packages and commands
         'preamble': r'''
-% Page geometry for margin notes
-\usepackage[
-    a4paper,
+% Page geometry for margin notes - set via geometry option
+\geometry{
     left=24.8mm,           % Inner margin
     textwidth=117mm,       % Main text width
     marginparsep=8.2mm,    % Gap between text and margin
     marginparwidth=39.4mm, % Margin width
-    includemp,             % Include margin in page calculations
-]{geometry}
-
-% Font settings for XeLaTeX
-\usepackage{fontspec}
-\usepackage[korean]{kotex}
-
-% Set main fonts - fallback if Noto not available
-\IfFontExistsTF{Noto Serif CJK KR}{
-    \setmainfont{Noto Serif CJK KR}
-    \setsansfont{Noto Sans CJK KR}
-}{
-    \setmainfont{Times New Roman}
-    \setsansfont{Arial}
+    includemp              % Include margin in page calculations
 }
-\setmonofont{Consolas}
+
+% Additional font settings - fontspec and kotex already loaded by Sphinx
+% Set CJK fonts - fallback if Noto not available
+\IfFontExistsTF{Noto Serif CJK KR}{
+    \setCJKmainfont{Noto Serif CJK KR}
+    \setCJKsansfont{Noto Sans CJK KR}
+}{
+    % Use default CJK fonts
+}
 
 % Margin notes package
 \usepackage{marginnote}
@@ -55,12 +49,7 @@ def get_latex_elements() -> dict[str, Any]:
     \marginnote{\textsuperscript{\thesidenote}#1}%
 }
 
-% Margin figure environment
-\newenvironment{marginfigure}{%
-    \begin{marginnote}%
-}{%
-    \end{marginnote}%
-}
+% Note: margin figures are handled directly with \marginnote in the visitor
 
 % Better spacing
 \usepackage{setspace}
@@ -86,10 +75,10 @@ def get_latex_elements() -> dict[str, Any]:
         'figure_align': 'htbp',
         
         # Table of contents depth
-        'tocdepth': 3,
+        'tocdepth': r'\setcounter{tocdepth}{3}',
         
-        # Section numbering depth
-        'secnumdepth': 3,
+        # Section numbering depth  
+        'secnumdepth': r'\setcounter{secnumdepth}{3}',
         
         # Footer
         'footer': '',

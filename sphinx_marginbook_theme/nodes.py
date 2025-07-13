@@ -123,9 +123,33 @@ def depart_sidenote_latex(self, node):
 
 def visit_marginfigure_latex(self, node):
     """Visit margin figure node for LaTeX output."""
-    self.body.append(r'\begin{marginfigure}')
+    # For LaTeX, we use marginnote instead of a float environment
+    self.body.append(r'\marginnote{')
+    # We need to manually handle the structure since marginnote doesn't support floats
+    self.body.append(r'\centering ')
 
 
 def depart_marginfigure_latex(self, node):
     """Depart margin figure node for LaTeX output."""
-    self.body.append(r'\end{marginfigure}')
+    self.body.append('}')
+
+
+def visit_caption_in_marginfigure_latex(self, node):
+    """Visit caption node inside margin figure for LaTeX output."""
+    # Check if we're inside a MarginFigureNode
+    if any(isinstance(parent, MarginFigureNode) for parent in node.traverse(ascending=True, siblings=False, include_self=False)):
+        # Just add a line break and make it small
+        self.body.append(r'\\ \small ')
+    else:
+        # Use the default caption handling
+        self.visit_caption(node)
+
+
+def depart_caption_in_marginfigure_latex(self, node):
+    """Depart caption node inside margin figure for LaTeX output."""
+    if any(isinstance(parent, MarginFigureNode) for parent in node.traverse(ascending=True, siblings=False, include_self=False)):
+        # Nothing to do
+        pass
+    else:
+        # Use the default caption handling
+        self.depart_caption(node)
