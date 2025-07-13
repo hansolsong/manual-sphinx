@@ -8,6 +8,8 @@ from typing import Any, Dict
 
 from sphinx.application import Sphinx
 
+from .directives import setup_directives
+from .nodes import setup_nodes
 from .version import __version__, __version_tuple__
 
 __all__ = ["__version__", "__version_tuple__", "setup", "get_html_theme_path"]
@@ -34,7 +36,10 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     # Register the HTML theme
     app.add_html_theme("marginbook", str(Path(__file__).parent / "html" / "theme" / "marginbook"))
     
-    # TODO: Register nodes and directives in Phase 2
+    # Register nodes and directives
+    setup_nodes(app)
+    setup_directives(app)
+    
     # TODO: Register transforms and visitors in Phase 3/4
     
     return {
