@@ -7,43 +7,43 @@ from docutils import nodes
 
 class MarginNode(nodes.General, nodes.Element):
     """Node for margin content.
-    
+
     This node represents content that should be placed in the margin.
     It can contain any block-level content like paragraphs, lists, figures, etc.
     """
-    
+
     pass
 
 
 class SidenoteNode(nodes.General, nodes.Element):
     """Node for numbered sidenotes.
-    
+
     This node represents a numbered sidenote that appears in the margin.
     Similar to footnotes but displayed in the margin instead of at the bottom.
-    
+
     Attributes:
         number: The sidenote number
     """
-    
+
     def __init__(self, *args, number: int | None = None, **kwargs):
         super().__init__(*args, **kwargs)
         if number is not None:
-            self['number'] = number
+            self["number"] = number
 
 
 class MarginFigureNode(nodes.General, nodes.Element):
     """Node for figures placed in the margin.
-    
+
     This node represents a figure (image with optional caption) that should
     be placed in the margin area.
     """
-    
+
     pass
 
 
 def setup_nodes(app):
     """Register the custom nodes with Sphinx.
-    
+
     Args:
         app: The Sphinx application object.
     """
@@ -67,17 +67,17 @@ def setup_nodes(app):
 # HTML visitor functions
 def visit_margin_html(self, node):
     """Visit margin node for HTML output."""
-    self.body.append(self.starttag(node, 'aside', CLASS='margin-note'))
+    self.body.append(self.starttag(node, "aside", CLASS="margin-note"))
 
 
 def depart_margin_html(self, node):
     """Depart margin node for HTML output."""
-    self.body.append('</aside>\n')
+    self.body.append("</aside>\n")
 
 
 def visit_sidenote_html(self, node):
     """Visit sidenote node for HTML output."""
-    number = node.get('number', '')
+    number = node.get("number", "")
     self.body.append(
         f'<span class="sidenote-number">{number}</span>'
         f'<aside class="sidenote" data-sidenote-number="{number}">'
@@ -86,60 +86,63 @@ def visit_sidenote_html(self, node):
 
 def depart_sidenote_html(self, node):
     """Depart sidenote node for HTML output."""
-    self.body.append('</aside>')
+    self.body.append("</aside>")
 
 
 def visit_marginfigure_html(self, node):
     """Visit margin figure node for HTML output."""
-    self.body.append(self.starttag(node, 'figure', CLASS='margin-figure'))
+    self.body.append(self.starttag(node, "figure", CLASS="margin-figure"))
 
 
 def depart_marginfigure_html(self, node):
     """Depart margin figure node for HTML output."""
-    self.body.append('</figure>\n')
+    self.body.append("</figure>\n")
 
 
 # LaTeX visitor functions
 def visit_margin_latex(self, node):
     """Visit margin node for LaTeX output."""
-    self.body.append(r'\marginnote{')
+    self.body.append(r"\marginnote{")
 
 
 def depart_margin_latex(self, node):
     """Depart margin node for LaTeX output."""
-    self.body.append('}')
+    self.body.append("}")
 
 
 def visit_sidenote_latex(self, node):
     """Visit sidenote node for LaTeX output."""
     # In LaTeX, we'll use a custom \sidenote command
-    self.body.append(r'\sidenote{')
+    self.body.append(r"\sidenote{")
 
 
 def depart_sidenote_latex(self, node):
     """Depart sidenote node for LaTeX output."""
-    self.body.append('}')
+    self.body.append("}")
 
 
 def visit_marginfigure_latex(self, node):
     """Visit margin figure node for LaTeX output."""
     # For LaTeX, we use marginnote instead of a float environment
-    self.body.append(r'\marginnote{')
+    self.body.append(r"\marginnote{")
     # We need to manually handle the structure since marginnote doesn't support floats
-    self.body.append(r'\centering ')
+    self.body.append(r"\centering ")
 
 
 def depart_marginfigure_latex(self, node):
     """Depart margin figure node for LaTeX output."""
-    self.body.append('}')
+    self.body.append("}")
 
 
 def visit_caption_in_marginfigure_latex(self, node):
     """Visit caption node inside margin figure for LaTeX output."""
     # Check if we're inside a MarginFigureNode
-    if any(isinstance(parent, MarginFigureNode) for parent in node.traverse(ascending=True, siblings=False, include_self=False)):
+    if any(
+        isinstance(parent, MarginFigureNode)
+        for parent in node.traverse(ascending=True, siblings=False, include_self=False)
+    ):
         # Just add a line break and make it small
-        self.body.append(r'\\ \small ')
+        self.body.append(r"\\ \small ")
     else:
         # Use the default caption handling
         self.visit_caption(node)
@@ -147,7 +150,10 @@ def visit_caption_in_marginfigure_latex(self, node):
 
 def depart_caption_in_marginfigure_latex(self, node):
     """Depart caption node inside margin figure for LaTeX output."""
-    if any(isinstance(parent, MarginFigureNode) for parent in node.traverse(ascending=True, siblings=False, include_self=False)):
+    if any(
+        isinstance(parent, MarginFigureNode)
+        for parent in node.traverse(ascending=True, siblings=False, include_self=False)
+    ):
         # Nothing to do
         pass
     else:

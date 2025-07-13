@@ -7,17 +7,16 @@ from typing import Any
 
 def get_latex_elements() -> dict[str, Any]:
     """Get LaTeX elements configuration for margin notes.
-    
+
     Returns:
         Dictionary of LaTeX configuration options.
     """
     return {
         # Document class options
-        'papersize': 'a4paper',
-        'pointsize': '10pt',
-        
+        "papersize": "a4paper",
+        "pointsize": "10pt",
         # Preamble - packages and commands
-        'preamble': r'''
+        "preamble": r"""
 % Page geometry for margin notes - set via geometry option
 \geometry{
     left=24.8mm,           % Inner margin
@@ -66,43 +65,37 @@ def get_latex_elements() -> dict[str, Any]:
     urlcolor=blue,
     pdfborder={0 0 0},
 }
-        ''',
-        
+        """,
         # Additional LaTeX packages
-        'extrapackages': r'\usepackage{kotex}',
-        
+        "extrapackages": r"\usepackage{kotex}",
         # Figure alignment
-        'figure_align': 'htbp',
-        
+        "figure_align": "htbp",
         # Table of contents depth
-        'tocdepth': r'\setcounter{tocdepth}{3}',
-        
-        # Section numbering depth  
-        'secnumdepth': r'\setcounter{secnumdepth}{3}',
-        
+        "tocdepth": r"\setcounter{tocdepth}{3}",
+        # Section numbering depth
+        "secnumdepth": r"\setcounter{secnumdepth}{3}",
         # Footer
-        'footer': '',
-        
+        "footer": "",
         # Fancy chapter headings
-        'fncychap': '',
+        "fncychap": "",
     }
 
 
 def get_latex_documents(config) -> list[tuple[str, str, str, str, str]]:
     """Get LaTeX documents configuration.
-    
+
     Args:
         config: Sphinx configuration object.
-        
+
     Returns:
         List of document tuples for LaTeX builder.
     """
     return [
         (
             config.master_doc,  # Start file
-            config.project.replace(' ', '') + '.tex',  # Target name
+            config.project.replace(" ", "") + ".tex",  # Target name
             config.project,  # Title
             config.author,  # Author
-            'manual',  # Document class
+            "manual",  # Document class
         ),
     ]

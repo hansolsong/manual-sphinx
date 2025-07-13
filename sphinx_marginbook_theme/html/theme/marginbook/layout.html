@@ -1,9 +1,9 @@
 {#
     marginbook/layout.html
     ~~~~~~~~~~~~~~~~~~~~~
-    
+
     Master layout template for Sphinx MarginBook theme.
-    
+
     :copyright: Copyright 2025 by the sphinx-marginbook-theme contributors.
 #}
 
@@ -35,7 +35,7 @@
             </h1>
             {%- endif %}
             {%- endblock %}
-            
+
             {%- block sidebartoc %}
             {%- if display_toc %}
             <div class="sidebar-toc">
@@ -44,11 +44,11 @@
             </div>
             {%- endif %}
             {%- endblock %}
-            
+
             {%- block sidebarrel %}
             {%- include "relations.html" %}
             {%- endblock %}
-            
+
             {%- block sidebarsearch %}
             {%- include "searchbox.html" %}
             {%- endblock %}
@@ -56,13 +56,13 @@
     </nav>
     {% endif %}
     {%- endblock %}
-    
+
     <main class="marginbook-main" role="main">
         <div class="marginbook-content">
             {% block body %} {% endblock %}
         </div>
     </main>
-    
+
     {%- block sidebar2 %}{% endblock %}
 </div>
 {%- endblock %}

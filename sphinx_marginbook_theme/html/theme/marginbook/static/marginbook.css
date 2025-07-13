@@ -1,4 +1,4 @@
-/* 
+/*
  * MarginBook Theme CSS
  * Inspired by Quarto's Cosmo theme and Tufte CSS
  */
@@ -12,28 +12,28 @@
     --mb-info: #17a2b8;
     --mb-warning: #ffc107;
     --mb-danger: #dc3545;
-    
+
     --mb-text: #333333;
     --mb-text-muted: #6c757d;
     --mb-bg: #ffffff;
     --mb-bg-secondary: #f8f9fa;
     --mb-border: #dee2e6;
-    
+
     --mb-link: #18bc9c;
     --mb-link-hover: #128f76;
-    
+
     /* Layout */
     --mb-margin-width: 300px;
     --mb-margin-gap: 2rem;
     --mb-content-max-width: 650px;
     --mb-sidebar-width: 250px;
-    
+
     /* Typography */
     --mb-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --mb-font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --mb-font-size: 16px;
     --mb-line-height: 1.6;
-    
+
     /* Spacing */
     --mb-spacing-xs: 0.25rem;
     --mb-spacing-sm: 0.5rem;
@@ -269,7 +269,7 @@ pre code {
         margin-right: 0;
         max-width: 100%;
     }
-    
+
     /* Convert margin notes to inline on mobile */
     .margin-note,
     .sidenote,
@@ -282,7 +282,7 @@ pre code {
         border-left: 3px solid var(--mb-primary);
         border-radius: 0.25rem;
     }
-    
+
     .sidenote::before {
         content: "Note " attr(data-sidenote-number) ": ";
         font-weight: 600;
@@ -295,16 +295,16 @@ pre code {
         transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
     }
-    
+
     .marginbook-sidebar.active {
         transform: translateX(0);
     }
-    
+
     .marginbook-main {
         margin-left: 0;
         padding: var(--mb-spacing-lg);
     }
-    
+
     /* Add mobile menu toggle button */
     .mobile-menu-toggle {
         position: fixed;
@@ -325,12 +325,12 @@ pre code {
     .marginbook-sidebar {
         display: none;
     }
-    
+
     .marginbook-main {
         margin: 0;
         padding: 0;
     }
-    
+
     .margin-note,
     .sidenote,
     .margin-figure {

@@ -14,12 +14,12 @@ html_theme_options = {
     'margin_width': '350px',        # 마진 너비
     'margin_gap': '2.5rem',         # 마진과 본문 간격
     'content_max_width': '700px',   # 본문 최대 너비
-    
+
     # 색상
     'primary_color': '#2c3e50',     # 주 색상
     'link_color': '#18bc9c',        # 링크 색상
     'text_color': '#333333',        # 텍스트 색상
-    
+
     # 기능
     'show_nav_level': 3,            # 네비게이션 깊이
     'sticky_navigation': True,      # 고정 네비게이션
@@ -170,12 +170,12 @@ from sphinx_marginbook_theme.directives import MarginDirective
 
 class CustomMarginDirective(MarginDirective):
     """커스텀 마진 디렉티브"""
-    
+
     option_spec = {
         **MarginDirective.option_spec,
         'highlight': directives.flag,
     }
-    
+
     def run(self):
         # 커스텀 로직
         return super().run()

@@ -59,11 +59,11 @@
 ```python
 def calculate_margin_width(content_width: float, ratio: float = 0.4) -> float:
     """마진 너비를 계산합니다.
-    
+
     Args:
         content_width: 메인 콘텐츠 영역의 너비
         ratio: 마진 너비 비율
-        
+
     Returns:
         계산된 마진 너비
     """

@@ -26,7 +26,7 @@
             document.body.appendChild(toggleBtn);
 
             const sidebar = document.querySelector('.marginbook-sidebar');
-            
+
             toggleBtn.addEventListener('click', function() {
                 sidebar.classList.toggle('active');
                 toggleBtn.innerHTML = sidebar.classList.contains('active') ? '✕' : '☰';
@@ -47,7 +47,7 @@
      */
     function initMarginNotes() {
         const marginNotes = document.querySelectorAll('.margin-note, .sidenote, .margin-figure');
-        
+
         // Position margin notes relative to their reference
         marginNotes.forEach(function(note) {
             positionMarginNote(note);
@@ -88,17 +88,17 @@
      */
     function initSmoothScroll() {
         const links = document.querySelectorAll('a[href^="#"]');
-        
+
         links.forEach(function(link) {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href').slice(1);
                 const targetElement = document.getElementById(targetId);
-                
+
                 if (targetElement) {
                     const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    
+
                     window.scrollTo({
                         top: offsetTop - 20,
                         behavior: 'smooth'

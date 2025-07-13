@@ -4,7 +4,7 @@ MarginBook Theme은 Edward Tufte의 책 디자인과 Quarto의 Cosmo 테마에�
 
 ## 디자인 철학
 
-이 테마의 핵심 아이디어는 **마진을 적극적으로 활용**하는 것입니다{sidenote}`Edward Tufte는 데이터 시각화와 정보 디자인 분야의 선구자입니다.`. 
+이 테마의 핵심 아이디어는 **마진을 적극적으로 활용**하는 것입니다{sidenote}`Edward Tufte는 데이터 시각화와 정보 디자인 분야의 선구자입니다.`.
 
 :::{margin}
 **Tufte의 원칙**
