@@ -9,10 +9,17 @@ from typing import Any, Dict
 from sphinx.application import Sphinx
 
 from .directives import setup_directives
+from .latex import get_latex_elements, setup_latex
 from .nodes import setup_nodes
 from .version import __version__, __version_tuple__
 
-__all__ = ["__version__", "__version_tuple__", "setup", "get_html_theme_path"]
+__all__ = [
+    "__version__",
+    "__version_tuple__",
+    "setup",
+    "get_html_theme_path",
+    "get_latex_elements",
+]
 
 
 def get_html_theme_path() -> list[str]:
@@ -40,7 +47,8 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     setup_nodes(app)
     setup_directives(app)
     
-    # TODO: Register transforms and visitors in Phase 3/4
+    # Setup LaTeX configuration
+    setup_latex(app)
     
     return {
         "version": __version__,
